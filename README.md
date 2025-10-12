@@ -1213,10 +1213,10 @@ curl 'https://pandora-music-api.vercel.app/api/playlists?url=https%3A%2F%2Fwww.p
 ```
 </details>
 
-## Details Responses
+## Detailed Responses
 
 <details>
-  <summary>Song Details Response</summary>
+  <summary>Song Detailed Response</summary>
 
 ```json
 {
@@ -1326,7 +1326,7 @@ curl 'https://pandora-music-api.vercel.app/api/playlists?url=https%3A%2F%2Fwww.p
 </details>
 
 <details>
-  <summary>Album Details Response</summary>
+  <summary>Album Detailed Response</summary>
 
 ```json
 {
@@ -1993,7 +1993,7 @@ curl 'https://pandora-music-api.vercel.app/api/playlists?url=https%3A%2F%2Fwww.p
 </details>
 
 <details>
-  <summary>Artist Details Response</summary>
+  <summary>Artist Detailed Response</summary>
 
 ```json
 {
@@ -3870,7 +3870,7 @@ curl 'https://pandora-music-api.vercel.app/api/playlists?url=https%3A%2F%2Fwww.p
 </details>
 
 <details>
-  <summary>Playlist Details Response</summary>
+  <summary>Playlist Detailed Response</summary>
 
 ```json
 {
