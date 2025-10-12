@@ -43,7 +43,7 @@ It doesn’t stream or decrypt anything — it just gives you clean, structured 
 
 - ⚡ Extremely fast: Average response under 150-200ms  
 - 🎯 Provides metadata for tracks, albums, artists, and playlists  
-- 🔍 Supports global search and individual searches for songs, albums, or artists  
+- 🔍 Supports global search and individual searches for songs, albums, artists, or playlists  
 - 🛡 Rate limiting and security implemented  
 - 🚀 Built on Hono for performance  
 - 🧩 Input validation with Zod for consistent API responses  
