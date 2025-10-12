@@ -32,7 +32,7 @@ It doesn’t stream or decrypt anything — it just gives you clean, structured 
   <a href="https://github.com/notdeltaxd/Pandora-API/issues">Request Feature</a>
 </h4>
 
-> ⚠️ This is an unofficial, experimental API. It’s for **educational use only** and not associated with Pandora.
+> ⚠️ The API is still in development. It’s an unofficial, experimental API. It’s for **educational use only** and not associated with Pandora.
 
 </div>
 
