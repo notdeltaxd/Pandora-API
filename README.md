@@ -4419,3 +4419,15 @@ curl 'https://pandora-music-api.vercel.app/api/playlists?url=https%3A%2F%2Fwww.p
 }
 ```
 </details>
+
+<div align="center">
+  
+## ⚠️ Legal Disclaimer
+
+This project is intended for **educational and research purposes only**. It interacts with Pandora’s internal APIs in an unofficial manner and may not comply with Pandora’s Terms of Service. The authors are **not affiliated with Pandora** in any way.  
+
+This software is provided **“as is”** without any warranties, express or implied. Use of this API is **at your own risk**, and you are solely responsible for ensuring compliance with applicable laws and terms in your country or region.  
+
+This project is **non-commercial** and does **not host, stream, or distribute any Pandora-owned content**.
+
+</div>
