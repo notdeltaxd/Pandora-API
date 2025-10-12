@@ -41,7 +41,7 @@ It doesn’t stream or decrypt anything — it just gives you clean, structured 
 
 ## Features
 
-- ⚡ Extremely fast: Average response under 150ms  
+- ⚡ Extremely fast: Average response under 150-200ms  
 - 🎯 Provides metadata for tracks, albums, artists, and playlists  
 - 🔍 Supports global search and individual searches for songs, albums, or artists  
 - 🛡 Rate limiting and security implemented  
