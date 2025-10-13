@@ -32,8 +32,7 @@
     "lint": "eslint .",
     "lint:fix": "bun run lint --fix",
     "test": "vitest run",
-    "test:ui": "vitest --ui",
-    "spell-check": "cspell ."
+    "test:ui": "vitest --ui"
   },
   "dependencies": {
     "@dotenvx/dotenvx": "^1.51.0",
