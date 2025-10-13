@@ -41,32 +41,32 @@ It doesn’t stream or decrypt anything — it just gives you clean, structured 
 
 ## Features
 
-- ⚡ Extremely fast: Average response under 150-200ms  
-- 🎯 Provides metadata for tracks, albums, artists, and playlists  
-- 🔍 Supports global search and individual searches for songs, albums, artists, or playlists  
-- 🛡 Rate limiting and security implemented  
-- 🚀 Built on Hono for performance  
-- 🧩 Input validation with Zod for consistent API responses  
-- ☁️ Deployed on Vercel with automatic scaling 
+- ⚡ Extremely fast: Average response under 150-200ms
+- 🎯 Provides metadata for tracks, albums, artists, and playlists
+- 🔍 Supports global search and individual searches for songs, albums, artists, or playlists
+- 🛡 Rate limiting and security implemented
+- 🚀 Built on Hono for performance
+- 🧩 Input validation with Zod for consistent API responses
+- ☁️ Deployed on Vercel with automatic scaling
 
 ## API Endpoints
 
-| Method | Endpoint | Description |
-|--------|-----------|-------------|
-| `GET` | `/api/search?query={query}` | Global search |
-| `GET` | `/api/search/songs?query={query}` | Search for songs only |
-| `GET` | `/api/search/albums?query={query}` | Search for albums only |
-| `GET` | `/api/search/artists?query={query}` | Search for artists only |
-| `GET` | `/api/search/playlist?query={query}` | Search for playlists only |
-| `GET` | `/api/songs/:id` | Get song details |
-| `GET` | `/api/songs/:id/suggestions` | Get song suggestions |
-| `GET` | `/api/albums/:id` | Get album details |
-| `GET` | `/api/artists/:id` | Get artist info |
-| `GET` | `/api/playlists/:id` | Get playlist metadata |
-| `GET` | `/api/songs?url={song_url}` | Get song details via URL |
-| `GET` | `/api/albums?url={album_url}` | Get album details via URL |
-| `GET` | `/api/artists?url={artist_url}` | Get artist info via URL |
-| `GET` | `/api/playlists?url={playlist_url}` | Get playlist metadata via URL |
+| Method | Endpoint                             | Description                   |
+| ------ | ------------------------------------ | ----------------------------- |
+| `GET`  | `/api/search?query={query}`          | Global search                 |
+| `GET`  | `/api/search/songs?query={query}`    | Search for songs only         |
+| `GET`  | `/api/search/albums?query={query}`   | Search for albums only        |
+| `GET`  | `/api/search/artists?query={query}`  | Search for artists only       |
+| `GET`  | `/api/search/playlist?query={query}` | Search for playlists only     |
+| `GET`  | `/api/songs/:id`                     | Get song details              |
+| `GET`  | `/api/songs/:id/suggestions`         | Get song suggestions          |
+| `GET`  | `/api/albums/:id`                    | Get album details             |
+| `GET`  | `/api/artists/:id`                   | Get artist info               |
+| `GET`  | `/api/playlists/:id`                 | Get playlist metadata         |
+| `GET`  | `/api/songs?url={song_url}`          | Get song details via URL      |
+| `GET`  | `/api/albums?url={album_url}`        | Get album details via URL     |
+| `GET`  | `/api/artists?url={artist_url}`      | Get artist info via URL       |
+| `GET`  | `/api/playlists?url={playlist_url}`  | Get playlist metadata via URL |
 
 ### Example Requests
 
@@ -87,6 +87,49 @@ curl 'https://pandora-music-api.vercel.app/api/artists?url=https%3A%2F%2Fwww.pan
 curl 'https://pandora-music-api.vercel.app/api/playlists?url=https%3A%2F%2Fwww.pandora.com%2Fplaylist%2FPL%3A844424980353351%3A1756780791'
 ```
 
+## Getting Started
+
+### Prerequisites
+
+- Node.js >= 18.0.0
+- Package manager (npm, pnpm, or bun)
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/notdeltaxd/Pandora-API.git
+cd Pandora-API
+
+# Install dependencies (choose one)
+npm install
+# or
+pnpm install
+# or
+bun install
+```
+
+### Environment Setup
+
+1. Copy `.env.example` to `.env`:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+2. Follow the detailed instructions in `.env.example` to obtain your Pandora credentials:
+   - Go to https://www.pandora.com/browse
+   - Use Developer Tools to extract session tokens
+   - Fill in your credentials in the `.env` file
+
+### Development
+
+- `npm run dev` - Start development server with hot reload
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run test` - Run tests
+- `npm run lint` - Run linter
+- `npm run format` - Format code with Prettier
 
 ## Search Responses
 
@@ -201,6 +244,7 @@ curl 'https://pandora-music-api.vercel.app/api/playlists?url=https%3A%2F%2Fwww.p
   }
 }
 ```
+
 </details>
 
 <details>
@@ -282,6 +326,7 @@ curl 'https://pandora-music-api.vercel.app/api/playlists?url=https%3A%2F%2Fwww.p
   }
 }
 ```
+
 </details>
 
 <details>
@@ -597,6 +642,7 @@ curl 'https://pandora-music-api.vercel.app/api/playlists?url=https%3A%2F%2Fwww.p
   }
 }
 ```
+
 </details>
 
 ## Song Suggestions Response
@@ -1211,6 +1257,7 @@ curl 'https://pandora-music-api.vercel.app/api/playlists?url=https%3A%2F%2Fwww.p
   ]
 }
 ```
+
 </details>
 
 ## Detailed Responses
@@ -1323,6 +1370,7 @@ curl 'https://pandora-music-api.vercel.app/api/playlists?url=https%3A%2F%2Fwww.p
   }
 }
 ```
+
 </details>
 
 <details>
@@ -1990,6 +2038,7 @@ curl 'https://pandora-music-api.vercel.app/api/playlists?url=https%3A%2F%2Fwww.p
   }
 }
 ```
+
 </details>
 
 <details>
@@ -3423,14 +3472,7 @@ curl 'https://pandora-music-api.vercel.app/api/playlists?url=https%3A%2F%2Fwww.p
             "url": "https://content-images.p-cdn.com/images/0d/89/75/4f/0fc04c529fc0c50dfef188d5/_1080W_1080H.jpg"
           }
         ],
-        "songs": [
-          "TR:48788523",
-          "TR:48788524",
-          "TR:48788525",
-          "TR:48788526",
-          "TR:48788527",
-          "TR:48788528"
-        ]
+        "songs": ["TR:48788523", "TR:48788524", "TR:48788525", "TR:48788526", "TR:48788527", "TR:48788528"]
       },
       {
         "id": "AL:15791700",
@@ -3499,13 +3541,7 @@ curl 'https://pandora-music-api.vercel.app/api/playlists?url=https%3A%2F%2Fwww.p
             "url": "https://content-images.p-cdn.com/images/f8/39/55/f3/92db4748b7fdd26b0d30cf41/_1080W_1080H.jpg"
           }
         ],
-        "songs": [
-          "TR:69825824",
-          "TR:69825827",
-          "TR:69825829",
-          "TR:69825831",
-          "TR:69825834"
-        ]
+        "songs": ["TR:69825824", "TR:69825827", "TR:69825829", "TR:69825831", "TR:69825834"]
       },
       {
         "id": "AL:16762127",
@@ -3574,13 +3610,7 @@ curl 'https://pandora-music-api.vercel.app/api/playlists?url=https%3A%2F%2Fwww.p
             "url": "https://content-images.p-cdn.com/images/80/56/ce/01/ea6a4561a546ed8da1114808/_1080W_1080H.jpg"
           }
         ],
-        "songs": [
-          "TR:74066805",
-          "TR:74066806",
-          "TR:74066807",
-          "TR:74066808",
-          "TR:74066809"
-        ]
+        "songs": ["TR:74066805", "TR:74066806", "TR:74066807", "TR:74066808", "TR:74066809"]
       },
       {
         "id": "AL:16522749",
@@ -3649,13 +3679,7 @@ curl 'https://pandora-music-api.vercel.app/api/playlists?url=https%3A%2F%2Fwww.p
             "url": "https://content-images.p-cdn.com/images/31/9c/c5/ed/bf7e45e1aa96d6fdd5d6e80a/_1080W_1080H.jpg"
           }
         ],
-        "songs": [
-          "TR:72796435",
-          "TR:72796436",
-          "TR:72796437",
-          "TR:72796438",
-          "TR:72796439"
-        ]
+        "songs": ["TR:72796435", "TR:72796436", "TR:72796437", "TR:72796438", "TR:72796439"]
       }
     ],
     "similarArtists": [
@@ -3867,6 +3891,7 @@ curl 'https://pandora-music-api.vercel.app/api/playlists?url=https%3A%2F%2Fwww.p
   }
 }
 ```
+
 </details>
 
 <details>
@@ -4418,15 +4443,16 @@ curl 'https://pandora-music-api.vercel.app/api/playlists?url=https%3A%2F%2Fwww.p
   }
 }
 ```
+
 </details>
 
 <div align="center">
   
 ## ⚠️ Legal Disclaimer
 
-This project is intended for **educational and research purposes only**. It interacts with Pandora’s internal APIs in an unofficial manner and may not comply with Pandora’s Terms of Service. The authors are **not affiliated with Pandora** in any way.  
+This project is intended for **educational and research purposes only**. It interacts with Pandora’s internal APIs in an unofficial manner and may not comply with Pandora’s Terms of Service. The authors are **not affiliated with Pandora** in any way.
 
-This software is provided **“as is”** without any warranties, express or implied. Use of this API is **at your own risk**, and you are solely responsible for ensuring compliance with applicable laws and terms in your country or region.  
+This software is provided **“as is”** without any warranties, express or implied. Use of this API is **at your own risk**, and you are solely responsible for ensuring compliance with applicable laws and terms in your country or region.
 
 This project is **non-commercial** and does **not host, stream, or distribute any Pandora-owned content**.
 
