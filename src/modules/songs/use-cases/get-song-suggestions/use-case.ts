@@ -11,7 +11,6 @@ export class GetSongSuggestionsUseCase implements IUseCase<string, z.infer<typeo
 
   async execute(id: string) {
     try {
-      // Fetch main song details
       const res = await useFetch<any>({
         path: endpoints.details,
         method: 'POST',
@@ -32,7 +31,6 @@ export class GetSongSuggestionsUseCase implements IUseCase<string, z.infer<typeo
         })
       }
 
-      // Fetch all annotations for similar tracks
       const similarTracks = await useFetch<any>({
         path: endpoints.annotate,
         method: 'POST',
@@ -40,47 +38,6 @@ export class GetSongSuggestionsUseCase implements IUseCase<string, z.infer<typeo
       })
 
       const annotations = similarTracks.data || {}
-
-      // // Map each track’s data into your return structure
-      // const items = similarIds
-      //   .map((id: string) => {
-      //     const track = annotations[id]
-      //     if (!track) return null
-
-      //     const ar = annotations[track.artistId]
-      //     const al = annotations[track.albumId]
-
-      //     return {
-      //       id: track.pandoraId || '',
-      //       name: track.name || '',
-      //       type: 'TR',
-      //       duration: track.duration || 0,
-      //       url: track.shareableUrlPath ? `https://www.pandora.com${track.shareableUrlPath}` : '',
-      //       isrc: track.isrc || null,
-      //       releaseDate: data.trackDetails.releaseDate,
-      //       copyright: data.trackDetails.copyright,
-      //       album: {
-      //         id: al?.pandoraId || '',
-      //         name: al?.name || '',
-      //         image: getArtworkLinks(al),
-      //         url: al?.shareableUrlPath ? `https://www.pandora.com${al.shareableUrlPath}` : ''
-      //       },
-      //       artists: track.artistName
-      //         ? [
-      //             {
-      //               id: track.artistId,
-      //               name: track.artistName,
-      //               image: getArtworkLinks(ar),
-      //               url: ar ? `https://www.pandora.com${ar.shareableUrlPath}` : ''
-      //             }
-      //           ]
-      //         : [],
-      //       image: getArtworkLinks(track)
-      //     }
-      //   })
-      //   .filter(Boolean)
-
-      // return items
 
       return similarIds.map((id: string) =>
         createSongPayload(id, {

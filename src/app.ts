@@ -7,6 +7,7 @@ import { Home } from './pages/home.js'
 import type { Routes } from './types/index.js'
 import type { HTTPException } from 'hono/http-exception'
 import errorMiddleware from './common/middlewares/error.middleware.js'
+import { getToken } from './common/helpers/fetch.js'
 
 export class App {
   private app: OpenAPIHono
@@ -25,6 +26,15 @@ export class App {
     routes.forEach((route) => {
       route.initRoutes()
       this.app.route('/api', route.controller)
+    })
+
+    this.app.get('/api/auth/login', async (c) => {
+      const tokens = await getToken()
+      if (!tokens) {
+        return c.json({ error: 'Failed to get token' }, 500)
+      }
+      const { authToken, csrfToken, cookie } = tokens
+      return c.json({ authToken, csrfToken, cookie })
     })
 
     this.app.route('/', Home)

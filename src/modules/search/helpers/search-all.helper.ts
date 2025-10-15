@@ -46,7 +46,7 @@ export const createSearchAllPayload = (search: any): z.infer<typeof SearchModel>
     },
     artists: {
       total: payloadMap.AR.results.length,
-      results: [...payloadMap.AR.results]
+      results: payloadMap.AR.results
     },
     playlists: {
       total: payloadMap.PL.results.length,

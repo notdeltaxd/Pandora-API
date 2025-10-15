@@ -40,3 +40,78 @@ export const useFetch = async <T>({ path, params, method = 'POST', body }: Fetch
 
   return { data: data as T, ok: response.ok, status: response.status }
 }
+
+export const getToken = async <T>() => {
+  const url = new URL(env.PANDORA_BASE_URL)
+
+  const headers = {
+    Accept: 'application/json, text/plain, */*',
+    'accept-language': 'en-US,en;q=0.9,bn;q=0.8',
+    'Content-Type': 'application/json',
+    origin: 'https://www.pandora.com',
+    priority: 'u=1, i',
+    'sec-ch-ua': '"Chromium";v="136", "Google Chrome";v="136", "Not.A/Brand";v="99"',
+    'sec-ch-ua-mobile': '?1',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'same',
+    'User-Agent': userAgents[Math.floor(Math.random() * userAgents.length)]
+  }
+
+  const res = await fetch(url.toString(), {
+    method: 'HEAD',
+    headers
+  });
+
+  const resData = await res.json();
+  console.log(resData);
+
+  if (!res.ok) {
+    console.log("Failed to set CSRF token from Pandora.")
+    return
+  }
+
+  const setCookies =
+    typeof (res.headers as any).getSetCookie === 'function'
+      ? (res.headers as any).getSetCookie()
+      : (res.headers.get('set-cookie')?.split('\n') ?? [])
+
+  const csrfCookie = setCookies.find((c: string) => c.toLowerCase().includes('csrftoken='))
+  if (!csrfCookie) {
+    return
+  }
+
+  const match = /csrftoken=([a-f0-9]{16})/i.exec(csrfCookie)
+  if (!match) {
+    return
+  }
+  const csrf = match[1]
+
+  const tokenRes = await fetch('https://www.pandora.com/api/v1/auth/anonymousLogin', {
+    method: 'POST',
+    headers: {
+      Cookie: csrfCookie,
+      'Content-Type': 'application/json',
+      Accept: '*/*',
+      'X-CsrfToken': csrf,
+      'User-Agent': userAgents[Math.floor(Math.random() * userAgents.length)]
+    }
+  })
+
+  if (!tokenRes.ok) {
+    console.log("Failed to set auth token from Pandora.")
+    return
+  }
+
+  const tokenJson: any = await tokenRes.json();
+  console.log(tokenJson);
+  if (!tokenJson || !tokenJson.authToken) {
+    console.log("Failed to set auth token from Pandora.")
+    return
+  }
+
+  return {
+    authToken: tokenJson.authToken,
+    csrfToken: csrf,
+    cookie: csrfCookie
+  }
+}
