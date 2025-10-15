@@ -60,13 +60,10 @@ export const getToken = async <T>() => {
   const res = await fetch(url.toString(), {
     method: 'HEAD',
     headers
-  });
-
-  const resData = await res.json();
-  console.log(resData);
+  })
 
   if (!res.ok) {
-    console.log("Failed to set CSRF token from Pandora.")
+    console.log('Failed to set CSRF token from Pandora.')
     return
   }
 
@@ -94,18 +91,31 @@ export const getToken = async <T>() => {
       Accept: '*/*',
       'X-CsrfToken': csrf,
       'User-Agent': userAgents[Math.floor(Math.random() * userAgents.length)]
-    }
+    },
+    body: JSON.stringify({})
   })
 
   if (!tokenRes.ok) {
-    console.log("Failed to set auth token from Pandora.")
+    console.log('Failed to set auth token from Pandora.')
     return
   }
 
-  const tokenJson: any = await tokenRes.json();
-  console.log(tokenJson);
+  const rawBody = await tokenRes.text()
+  if (!rawBody) {
+    console.log('Failed to set auth token from Pandora.')
+    return
+  }
+
+  let tokenJson: any
+  try {
+    tokenJson = JSON.parse(rawBody)
+  } catch {
+    console.log('Failed to parse auth token response from Pandora.')
+    return
+  }
+
   if (!tokenJson || !tokenJson.authToken) {
-    console.log("Failed to set auth token from Pandora.")
+    console.log('Failed to set auth token from Pandora.')
     return
   }
 
