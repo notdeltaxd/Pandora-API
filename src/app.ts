@@ -7,7 +7,6 @@ import { Home } from './pages/home.js'
 import type { Routes } from './types/index.js'
 import type { HTTPException } from 'hono/http-exception'
 import errorMiddleware from './common/middlewares/error.middleware.js'
-import { getToken } from './common/helpers/fetch.js'
 
 export class App {
   private app: OpenAPIHono
