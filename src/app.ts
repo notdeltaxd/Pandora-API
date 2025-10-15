@@ -26,16 +26,7 @@ export class App {
     routes.forEach((route) => {
       route.initRoutes()
       this.app.route('/api', route.controller)
-    })
-
-    this.app.get('/api/auth/login', async (c) => {
-      const tokens = await getToken()
-      if (!tokens) {
-        return c.json({ error: 'Failed to get token' }, 500)
-      }
-      const { authToken, csrfToken, cookie } = tokens
-      return c.json({ authToken, csrfToken, cookie })
-    })
+    });
 
     this.app.route('/', Home)
   }

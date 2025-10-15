@@ -1,12 +1,19 @@
 import { userAgents } from '../constants/index.js'
 import { env } from '../config/env.js'
 import { FetchParams, FetchResponse } from '../../types/index.js'
+import { HTTPException } from 'hono/http-exception'
 
 export const useFetch = async <T>({ path, params, method = 'POST', body }: FetchParams): Promise<FetchResponse<T>> => {
   const url = new URL(path, env.PANDORA_BASE_URL)
   Object.entries(params || {}).forEach(([key, value]) => {
     url.searchParams.append(key, value.toString())
-  })
+  });
+
+  const tokens = await getToken();
+  if (!tokens) {
+    throw new HTTPException(500, { message: 'Failed to get token' })
+  }
+  const { authToken, csrfToken, cookie } = tokens;
   const headers = {
     Accept: 'application/json, text/plain, */*',
     'accept-language': 'en-US,en;q=0.9,bn;q=0.8',
@@ -17,9 +24,9 @@ export const useFetch = async <T>({ path, params, method = 'POST', body }: Fetch
     'sec-ch-ua-mobile': '?1',
     'sec-fetch-mode': 'cors',
     'sec-fetch-site': 'same',
-    Cookie: env.PANDORA_COOKIE,
-    'X-Csrftoken': env.PANDORA_CSRF_TOKEN,
-    'X-Authtoken': env.PANDORA_AUTH_TOKEN,
+    Cookie: cookie,
+    'X-Csrftoken': csrfToken,
+    'X-Authtoken': authToken,
     'User-Agent': userAgents[Math.floor(Math.random() * userAgents.length)]
   }
 
