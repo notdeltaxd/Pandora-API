@@ -6,8 +6,8 @@ export const createPlaylistPayload = (data: any): PlaylistType => {
   const tracks = data.tracks.map((t: any) => {
     const trackId = t.pandoraId
 
-    createSongPayload(trackId, data)
-  })
+    return createSongPayload(trackId, data)
+  });
 
   return {
     id: data.pandoraId || '',
